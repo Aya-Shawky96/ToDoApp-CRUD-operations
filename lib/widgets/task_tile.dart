@@ -14,26 +14,29 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(taskTitle),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            onPressed: onEdit,
-            icon: const Icon(
-              Icons.edit,
-              color: Colors.blue,
+    return Card(
+      elevation: 8,
+      child: ListTile(
+        title: Text(taskTitle),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: onEdit,
+              icon: const Icon(
+                Icons.edit,
+                color: Colors.blue,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: onDelete,
-            icon: const Icon(
-              Icons.delete,
-              color: Colors.red,
+            IconButton(
+              onPressed: onDelete,
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.red,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

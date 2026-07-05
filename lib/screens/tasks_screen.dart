@@ -122,7 +122,7 @@ class TasksScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add ,color: Colors.white,),
       ),
     );
   }
