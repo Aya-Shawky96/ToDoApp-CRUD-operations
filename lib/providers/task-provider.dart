@@ -3,11 +3,12 @@ import '../models/task_model.dart';
 import '../services/task_service.dart';
 
 class TaskProvider extends ChangeNotifier {
-  TaskModel? datamodel; // Data model for storing the fetched tasks
+  TasksModel? datamodel; // Data model for storing the fetched tasks
 
   // Function to fetch all tasks from the service
   Future<void> getAllData() async {
-    datamodel = await TaskService.getData(); // Call the service to get tasks and store them in 'data'
+    datamodel =
+        await TaskService.getData(); // Call the service to get tasks and store them in 'data'
     notifyListeners();
   }
 
@@ -26,15 +27,8 @@ class TaskProvider extends ChangeNotifier {
   }
   // Function to update a task
 
-  Future<void> updateTask({
-    required int id,
-    required String title,
-  }) async {
-
-    await TaskService.updateItem(
-      id: id,
-      title: title,
-    );
+  Future<void> updateTask({required int id, required String title}) async {
+    await TaskService.updateItem(id: id, title: title);
 
     await getAllData();
   }

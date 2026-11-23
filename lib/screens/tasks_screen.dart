@@ -14,10 +14,11 @@ class TasksScreen extends StatelessWidget {
       backgroundColor: Colors.teal[400], // Background color for the main screen
       body: Container(
         padding: const EdgeInsets.only(
-            top: 60,
-            left: 20,
-            right: 20,
-            bottom: 20), // Padding around the body content
+          top: 60,
+          left: 20,
+          right: 20,
+          bottom: 20,
+        ), // Padding around the body content
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,15 +43,11 @@ class TasksScreen extends StatelessWidget {
                 final total = taskObject.datamodel?.result.length ?? 0;
                 return Text(
                   "$total Tasks", // Show total tasks count
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 );
               },
             ),
             const SizedBox(height: 20), // Spacing between elements
-
             // Main task list container
             Expanded(
               child: Container(
@@ -62,44 +59,42 @@ class TasksScreen extends StatelessWidget {
 
                 // Consumer to get the tasks list from TaskProvider
                 child: Consumer<TaskProvider>(
-                    builder: (context, taskObject, child) {
-                      final tasks = taskObject.datamodel?.result; // List of tasks
+                  builder: (context, taskObject, child) {
+                    final tasks = taskObject.datamodel?.result; // List of tasks
 
-// If tasks are null, fetch data and show a loading spinner
-                  if (tasks == null) {
-                    taskObject.getAllData();
-                    return const Center(child: CircularProgressIndicator());
-                  } else {
-                    // Build a list of tasks if data is available
-                    return ListView.builder(
-                      itemCount: tasks.length,
-                      itemBuilder: (context, index) {
-                        return TaskTile(
-                          taskTitle: tasks[index]["title"],
+                    // If tasks are null, fetch data and show a loading spinner
+                    if (tasks == null) {
+                      taskObject.getAllData();
+                      return const Center(child: CircularProgressIndicator());
+                    } else {
+                      // Build a list of tasks if data is available
+                      return ListView.builder(
+                        itemCount: tasks.length,
+                        itemBuilder: (context, index) {
+                          return TaskTile(
+                            taskTitle: tasks[index].title,
 
-                          onEdit: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (_) {
-                                print(tasks[index]["id"]);
-                                return UpdateTask(
-                                  id: tasks[index]["id"],
-                                  oldTitle: tasks[index]["title"],
-                                );
-                              },
-                            );
-                          },
+                            onEdit: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (_) {
+                                  return UpdateTask(
+                                    id: tasks[index].id,
+                                    oldTitle: tasks[index].title,
+                                  );
+                                },
+                              );
+                            },
 
-                          onDelete: () {
-                            taskObject.deleteTask(
-                              tasks[index]["id"],
-                            );
-                          },
-                        );
-                      },
-                    );
-                  }
-                }),
+                            onDelete: () {
+                              taskObject.deleteTask(tasks[index].id);
+                            },
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ],
@@ -122,7 +117,7 @@ class TasksScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        child: const Icon(Icons.add ,color: Colors.white,),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

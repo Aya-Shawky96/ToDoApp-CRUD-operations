@@ -3,13 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/providers/task-provider.dart';
 import 'package:todoapp/screens/tasks_screen.dart';
 
-
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
