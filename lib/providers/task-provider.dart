@@ -5,7 +5,6 @@ import '../services/task_service.dart';
 class TaskProvider extends ChangeNotifier {
   TasksModel? datamodel; // Data model for storing the fetched tasks
 
-  // Function to fetch all tasks from the service
   Future<void> getAllData() async {
     datamodel =
         await TaskService.getData(); // Call the service to get tasks and store them in 'data'
