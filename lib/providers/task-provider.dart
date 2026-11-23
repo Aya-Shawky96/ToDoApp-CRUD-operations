@@ -7,7 +7,7 @@ class TaskProvider extends ChangeNotifier {
 
   Future<void> getAllData() async {
     datamodel =
-        await TaskService.getData(); // Call the service to get tasks and store them in 'data'
+        await TaskService.getData(); //ll the service to get tasks and store them in 'data'
     notifyListeners();
   }
 
