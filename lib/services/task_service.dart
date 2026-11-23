@@ -5,29 +5,43 @@ class TaskService {
   static Dio dio = Dio(); // Create a Dio instance for handling HTTP requests
 
   // Function to fetch tasks data from the API
-  static Future<TaskModel> getData() async {
-    Response response = await dio.get(
-      "https://mytodoapi.runasp.net/api/TodoItems/",
-    );
+  static Future<TasksModel> getData() async {
+    try {
+      Response response = await dio.get(
+        "https://mytodoapi.runasp.net/api/TodoItems/",
+      );
 
-    return TaskModel.fromJson(response.data);
+      return TasksModel.fromJson(response.data);
+    } on DioException catch (dioError) {
+      throw Exception("Failed to fetch data: ${dioError.message}");
+    } catch (error) {
+      throw Exception("An unexpected error occurred: ${error.toString()}");
+    }
   }
 
-// Function to add a new task with the provided task description
+  // Function to add a new task with the provided task description
   static Future<void> addItem({required String newTask}) async {
-    await dio.post(
-      "https://mytodoapi.runasp.net/api/TodoItems/",
-      data: {
-        "title": newTask,
-      },
-    );
+    try {
+      await dio.post(
+        "https://mytodoapi.runasp.net/api/TodoItems/",
+        data: {"title": newTask},
+      );
+    } on DioException catch (dioError) {
+      throw Exception("Failed to add task: ${dioError.message}");
+    } catch (error) {
+      throw Exception("An unexpected error occurred: ${error.toString()}");
+    }
   }
 
-//Function to delete task with id
+  //Function to delete task with id
   static Future<void> deleteItem({required int id}) async {
-    await dio.delete(
-      "https://mytodoapi.runasp.net/api/TodoItems/$id",
-    );
+    try {
+      await dio.delete("https://mytodoapi.runasp.net/api/TodoItems/$id");
+    } on DioException catch (dioError) {
+      throw Exception("Failed to delete task: ${dioError.message}");
+    } catch (error) {
+      throw Exception("An unexpected error occurred: ${error.toString()}");
+    }
   }
 
   //Function to update  task with id
@@ -35,11 +49,15 @@ class TaskService {
     required int id,
     required String title,
   }) async {
-    await dio.put(
-      "https://mytodoapi.runasp.net/api/TodoItems/$id",
-      data: {
-        "title": title,
-      },
-    );
+    try {
+      await dio.put(
+        "https://mytodoapi.runasp.net/api/TodoItems/$id",
+        data: {"title": title},
+      );
+    } on DioException catch (dioError) {
+      throw Exception("Failed to update task: ${dioError.message}");
+    } catch (error) {
+      throw Exception("An unexpected error occurred: ${error.toString()}");
+    }
   }
 }

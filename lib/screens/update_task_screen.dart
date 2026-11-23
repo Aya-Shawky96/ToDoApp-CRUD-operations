@@ -7,18 +7,13 @@ class UpdateTask extends StatelessWidget {
   final int id;
   final String oldTitle;
 
-  UpdateTask({
-    super.key,
-    required this.id,
-    required this.oldTitle,
-  });
+  const UpdateTask({super.key, required this.id, required this.oldTitle});
 
   @override
   Widget build(BuildContext context) {
     String newTitle = oldTitle;
 
-    final taskObject =
-    Provider.of<TaskProvider>(context, listen: false);
+    final taskObject = context.read<TaskProvider>();
 
     return Container(
       padding: const EdgeInsets.all(30),
@@ -48,22 +43,14 @@ class UpdateTask extends StatelessWidget {
           TextButton(
             onPressed: () {
               if (newTitle.trim().isNotEmpty) {
-                taskObject.updateTask(
-                  id: id,
-                  title: newTitle,
-                );
+                taskObject.updateTask(id: id, title: newTitle);
               }
 
               Navigator.pop(context);
             },
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.teal,
-            ),
-            child: const Text(
-              "Update",
-              style: TextStyle(color: Colors.white),
-            ),
-          )
+            style: TextButton.styleFrom(backgroundColor: Colors.teal),
+            child: const Text("Update", style: TextStyle(color: Colors.white)),
+          ),
         ],
       ),
     );

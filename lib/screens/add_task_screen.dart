@@ -8,7 +8,7 @@ class AddTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String newTaskTitle = '';
-    final taskObject = Provider.of<TaskProvider>(context,listen: false);
+    final taskObject = context.read<TaskProvider>();
 
     return Container(
       padding: const EdgeInsets.all(30),
@@ -27,23 +27,19 @@ class AddTask extends StatelessWidget {
           TextField(
             textAlign: TextAlign.center,
             onChanged: (newText) {
-              newTaskTitle = newText; 
+              newTaskTitle = newText;
             },
           ),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
               if (newTaskTitle.trim() != '') {
-               
-                taskObject.addTask(newTaskTitle); 
+                taskObject.addTask(newTaskTitle);
               }
-              Navigator.pop(context); 
+              Navigator.pop(context);
             },
             style: TextButton.styleFrom(backgroundColor: Colors.teal[400]),
-            child: const Text(
-              "Add",
-              style: TextStyle(color: Colors.white),
-            ),
+            child: const Text("Add", style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
