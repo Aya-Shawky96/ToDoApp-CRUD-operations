@@ -23,17 +23,11 @@ class TaskTile extends StatelessWidget {
           children: [
             IconButton(
               onPressed: onEdit,
-              icon: const Icon(
-                Icons.edit,
-                color: Colors.blue,
-              ),
+              icon: const Icon(Icons.edit, color: Colors.blue),
             ),
             IconButton(
               onPressed: onDelete,
-              icon: const Icon(
-                Icons.delete,
-                color: Colors.red,
-              ),
+              icon: const Icon(Icons.delete, color: Colors.red),
             ),
           ],
         ),

@@ -13,6 +13,7 @@ class AddTask extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(30),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
@@ -24,11 +25,15 @@ class AddTask extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          TextField(
+          TextFormField(
             textAlign: TextAlign.center,
             onChanged: (newText) {
               newTaskTitle = newText;
             },
+            decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: .circular(30)),
+              label: Text("Todo or not todo?"),
+            ),
           ),
           const SizedBox(height: 20),
           TextButton(

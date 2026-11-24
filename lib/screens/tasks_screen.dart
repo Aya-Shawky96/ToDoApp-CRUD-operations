@@ -52,6 +52,7 @@ class TasksScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 height: 300,
+                padding: .all(20),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -68,8 +69,10 @@ class TasksScreen extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
                     } else {
                       // Build a list of tasks if data is available
-                      return ListView.builder(
+                      return ListView.separated(
                         itemCount: tasks.length,
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 10),
                         itemBuilder: (context, index) {
                           return TaskTile(
                             taskTitle: tasks[index].title,

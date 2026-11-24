@@ -19,9 +19,11 @@ class UpdateTask extends StatelessWidget {
       padding: const EdgeInsets.all(30),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             "Update Task",
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,
               color: Colors.teal[400],
@@ -36,6 +38,9 @@ class UpdateTask extends StatelessWidget {
             onChanged: (value) {
               newTitle = value;
             },
+            decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: .circular(30)),
+            ),
           ),
 
           const SizedBox(height: 20),

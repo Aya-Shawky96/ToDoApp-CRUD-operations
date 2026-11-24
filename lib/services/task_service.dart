@@ -4,7 +4,6 @@ import '../models/task_model.dart';
 class TaskService {
   static Dio dio = Dio(); // Create a Dio instance for handling HTTP requests
 
-  // Function to fetch tasks data from the API
   static Future<TasksModel> getData() async {
     try {
       Response response = await dio.get(
@@ -19,7 +18,6 @@ class TaskService {
     }
   }
 
-  // Function to add a new task with the provided task description
   static Future<void> addItem({required String newTask}) async {
     try {
       await dio.post(
@@ -33,7 +31,6 @@ class TaskService {
     }
   }
 
-  //Function to delete task with id
   static Future<void> deleteItem({required int id}) async {
     try {
       await dio.delete("https://mytodoapi.runasp.net/api/TodoItems/$id");
@@ -44,7 +41,6 @@ class TaskService {
     }
   }
 
-  //Function to update  task with id
   static Future<void> updateItem({
     required int id,
     required String title,
