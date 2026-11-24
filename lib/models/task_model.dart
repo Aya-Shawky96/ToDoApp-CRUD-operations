@@ -2,7 +2,7 @@ class Task {
   final int id;
   final String title;
   final String description;
-  final String status;
+  final bool status;
   final String createdAt;
 
   Task({
@@ -32,7 +32,7 @@ class TasksModel {
             id: item['id'],
             title: item['title'] ?? '',
             description: item['description'] ?? '',
-            status: item['status'] ?? '',
+            status: item['status'] ?? false,
             createdAt: item['createdAt'] ?? '',
           ),
         )
